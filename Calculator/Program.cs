@@ -9,45 +9,56 @@ namespace MyApplication
         {
             bool endApp = false;
 
-            while (!endApp) {
-                float num1 = 0; float num2 = 0;
-                double clean1 = 0; double clean2 = 0;
+            while (!endApp)
+            {
+                double num1 = 1; double num2 = 1;
 
                 Console.WriteLine("Console Calculator \r");
                 Console.WriteLine("------------------\r");
 
                 Console.WriteLine("");
-                Console.WriteLine("Please enter your first number");
-            try 
-                { 
-                   num1 = Convert.ToInt32(Console.ReadLine());
-                }
-            
-            catch (Exception e)
+                Console.WriteLine("Please enter the first number:");
+
+
+                while (double.IsNaN(num1) == false)
                 {
-                    Console.WriteLine(e.Message);
-                    
-                    Console.WriteLine("");
-                    Console.WriteLine("Please Enter a number");
-                    num1 = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("");
-                    Console.WriteLine("Please enter a second number");
-                }
+                    if (!double.TryParse(Console.ReadLine(), out num1))
+                    {
+                        Console.WriteLine("This is not a valid number");
 
-            try
+                        Console.WriteLine("");
+                        Console.WriteLine("Please enter a valid number:");
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                };
+
+                Console.WriteLine("");
+                Console.WriteLine("Please enter a second number:");
+
+                while (double.IsNaN(num2) == false)
                 {
-                    num2 = Convert.ToInt32(Console.ReadLine());
-                }
+                
+                    if (!double.TryParse(Console.ReadLine(), out num2))
+                    {
+                        Console.WriteLine("This is not a valid number");
 
-            catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                        Console.WriteLine("");
+                        Console.WriteLine("Please enter a valid number:");
+ 
+                    }
 
-                    Console.WriteLine("");
-                    Console.WriteLine("Please enter a number");
-                    num2 = Convert.ToInt32(Console.ReadLine());
-                }
+                    else
+                    {
+                        break;
+                    }
+
+                };
+
             Console.WriteLine("");
             Console.WriteLine("Select an operation:");
             Console.WriteLine("\t1. Addition");
@@ -56,23 +67,28 @@ namespace MyApplication
             Console.WriteLine("\t4. Division");
             Console.Write("Operation selected: ");
 
+
             switch (Console.ReadLine())
             {
                 case "Addition":
                 case "addition":
+                case "1":
                     Console.WriteLine($"Result: {num1} + {num2} = " + (num1 + num2));
                     break;
                 case "Subtraction":
                 case "subtraction":
-                    Console.WriteLine($"Result: {num1} - {num2} = " + (num1 - num2));
+                case "2":
+                        Console.WriteLine($"Result: {num1} - {num2} = " + (num1 - num2));
                     break;
                 case "Multiplication":
                 case "multiplication":
-                    Console.WriteLine($"Result: {num1} * {num2} = " + (num1 * num2));
+                case "3":
+                        Console.WriteLine($"Result: {num1} * {num2} = " + (num1 * num2));
                     break;
                 case "Division":
                 case "division":
-                    while (num2 == 0)
+                case "4":
+                        while (num2 == 0)
                     {
                         Console.WriteLine("Please enter a non-zero divisor");
                         num2 = Convert.ToInt32(Console.ReadLine());
@@ -85,9 +101,10 @@ namespace MyApplication
             }
 
             Console.WriteLine("");
-            Console.WriteLine("Press 'n' to close calculator or any other key to continue");
+            Console.WriteLine("Type 'close' to close calculator or press any other key to continue");
 
-            if (Console.ReadLine() == "n")
+            Console.Write(">");
+            if (Console.ReadLine() == "close" || Console.ReadLine() == "close")
             {
                 endApp = true;
             }
