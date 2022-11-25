@@ -23,9 +23,11 @@ namespace MyApplication
                 while (double.IsNaN(num1) == false)
                 {
 
+                    Console.Write(">");
                     if (!double.TryParse(Console.ReadLine(), out num1))
                     {
-                        Console.WriteLine("This is not a valid number");
+                        Console.WriteLine("");
+                        Console.WriteLine("This is not a valid number!");
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter a valid number:");
@@ -38,14 +40,15 @@ namespace MyApplication
                 };
 
                 Console.WriteLine("");
-                Console.WriteLine("Please enter a second number:");
+                Console.WriteLine("Please enter the second number:");
 
                 while (double.IsNaN(num2) == false)
                 {
-                
+                    Console.Write(">");
                     if (!double.TryParse(Console.ReadLine(), out num2))
                     {
-                        Console.WriteLine("This is not a valid number");
+                        Console.WriteLine("");
+                        Console.WriteLine("This is not a valid number!");
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter a valid number:");
@@ -66,7 +69,6 @@ namespace MyApplication
             Console.WriteLine("\t3. Multiplication");
             Console.WriteLine("\t4. Division");
             Console.Write("Operation selected: ");
-
 
             switch (Console.ReadLine())
             {
@@ -91,8 +93,27 @@ namespace MyApplication
                         while (num2 == 0)
                     {
                         Console.WriteLine("Please enter a non-zero divisor");
-                        num2 = Convert.ToInt32(Console.ReadLine());
-                    }
+
+                            while (double.IsNaN(num2) == false)
+                            {
+                                Console.Write(">");
+                                if (!double.TryParse(Console.ReadLine(), out num2))
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("This is not a valid number!");
+
+                                    Console.WriteLine("");
+                                    Console.WriteLine("Please enter a valid number:");
+
+                                }
+
+                                else
+                                {
+                                    break;
+                                }
+
+                            };
+                        }
                     Console.WriteLine($"Result: {num1} / {num2} = " + (num1 / num2));
                     break;
                 default:
